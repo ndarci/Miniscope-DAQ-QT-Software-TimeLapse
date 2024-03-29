@@ -18,6 +18,9 @@ public:
     void fillUCEditText();
 //    void setUserConfig(QJsonObject userConfig) {m_userConfig = userConfig;}
 
+    QObject *rootObject; // changed from private to public for python socket
+
+
 public slots:
     void receiveMessage(QString msg);
     void onRecordActivated();
@@ -36,7 +39,9 @@ signals:
 
 private:
     NewQuickView *view;
-    QObject *rootObject;
+
+    // QObject *rootObject;
+    
     QQuickItem  *messageTextArea;
     QQuickItem *recordTimeText;
 

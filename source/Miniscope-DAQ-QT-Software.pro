@@ -1,4 +1,4 @@
-QT += qml quick widgets
+QT += qml quick widgets network
 CONFIG += c++11
 
 QT += 3dcore

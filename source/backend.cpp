@@ -31,6 +31,8 @@
 #include "behaviortracker.h"
 #include "tracedisplay.h"
 
+#include "tcpserver.h"
+
 #ifdef USE_USB
  #include <libusb.h>
 #endif
@@ -913,6 +915,12 @@ bool backEnd::checkForCompression()
 
 void backEnd::constructUserConfigGUI()
 {
+    controlPanel = new ControlPanel(this, m_userConfig);
+    QObject::connect(this, SIGNAL (sendMessage(QString) ), controlPanel, SLOT( receiveMessage(QString)));
+
+    TcpServer *tcpServer = new TcpServer(controlPanel, this);
+    tcpServer->on_socket_activate(true);
+
     int idx;
     QStringList keys;
 
